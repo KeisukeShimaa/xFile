@@ -1406,6 +1406,9 @@ int free_rec_block(struct block *input_block) {
 }
 
 int free_rec_block_internal(struct block *input_block) {
+  if(!input_block){
+    return SUCCESS_ECODE_K2T;
+  }
   for (int i = 0; i < (int)input_block->children; i++) {
     struct block *current_block = &input_block->children_blocks[i];
     CHECK_ERR(free_rec_block_internal(current_block));
